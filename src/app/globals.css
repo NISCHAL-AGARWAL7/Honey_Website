@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Earthy / Golden Theme Colors */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* Light Mode (Earthy/Warm) */
+  --background: #faf7f2;
+  --foreground: #2d2621;
+  --card: #ffffff;
+  --card-foreground: #2d2621;
+  --primary: #c99c33; /* Richer Gold */
+  --primary-foreground: #ffffff;
+  --secondary: #8c7355; /* Earthy brown */
+  --secondary-foreground: #ffffff;
+  --accent: #f5eedc;
+  --accent-foreground: #4a3f35;
+  --muted: #f0eae1;
+  --muted-foreground: #736b63;
+  --border: #e6dace;
+}
+
+.dark {
+  /* Dark Mode (Deep Earthy) */
+  --background: #12100e;
+  --foreground: #f4eee6;
+  --card: #1c1815;
+  --card-foreground: #f4eee6;
+  --primary: #dfb95c; /* Bright Gold */
+  --primary-foreground: #12100e;
+  --secondary: #a88d6c;
+  --secondary-foreground: #12100e;
+  --accent: #2d2621;
+  --accent-foreground: #dfb95c;
+  --muted: #26221d;
+  --muted-foreground: #a69e96;
+  --border: #362f27;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Base utility classes for smooth transitions */
+* {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Premium Utilities */
+.glass-panel {
+  @apply bg-background/60 backdrop-blur-xl border border-border/50 shadow-[0_8px_32px_rgba(0,0,0,0.04)];
+}
+
+.dark .glass-panel {
+  @apply shadow-[0_8px_32px_rgba(0,0,0,0.2)];
+}
+
+.text-gradient-gold {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#dfb95c] via-[#c99c33] to-[#a88d6c];
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(201, 156, 51, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(201, 156, 51, 0.5);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 100ms; }
+.stagger-2 { animation-delay: 200ms; }
+.stagger-3 { animation-delay: 300ms; }
