@@ -5,7 +5,19 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "res.cloudinary.com",
+        hostname: "cdn.pixabay.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.pixabay.com",
+      },
+      {
+        protocol: "https",
+        hostname: "prod-files-secure.s3.us-east-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.notion.so",
       },
     ],
   },
