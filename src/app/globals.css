@@ -5,7 +5,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+ --font-sans: var(--font-inter);
+--font-heading: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
 
   /* Earthy / Golden Theme Colors */
@@ -55,7 +56,14 @@
   --muted-foreground: #a69e96;
   --border: #362f27;
 }
+.button-wrapper::before {
+  animation: spin-gradient 4s linear infinite;
+}
 
+@keyframes spin-gradient {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 body {
   background: var(--background);
   color: var(--foreground);
@@ -125,3 +133,23 @@ body {
 .stagger-1 { animation-delay: 100ms; }
 .stagger-2 { animation-delay: 200ms; }
 .stagger-3 { animation-delay: 300ms; }
+
+body {
+  font-family: var(--font-sans), sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading), serif;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+html, body {
+  overflow-x: hidden;
+}

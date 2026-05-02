@@ -29,8 +29,15 @@ export default async function ProductsPage({
   const categories = Array.from(new Set(allProducts.map((p) => p.category)));
 
   return (
-    <div className="container mx-auto px-4 py-12 lg:py-24">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+    <div 
+      className="min-h-screen relative bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{ backgroundImage: 'url("/honey-bg.png")' }}
+    >
+      {/* Semi-transparent overlay to ensure content is readable */}
+      <div className="absolute inset-0 bg-background/80 dark:bg-background/90 backdrop-blur-[2px]"></div>
+      
+      <div className="container mx-auto px-4 py-12 lg:py-24 relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
         <div>
           <h1 className="text-4xl font-bold tracking-tight mb-4">Shop All</h1>
           <p className="text-muted-foreground max-w-2xl">
@@ -95,6 +102,7 @@ export default async function ProductsPage({
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

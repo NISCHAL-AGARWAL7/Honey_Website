@@ -13,11 +13,25 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <style>{`
+  .button-wrapper::before {
+    animation: spin-gradient 4s linear infinite;
+  }
+
+  @keyframes spin-gradient {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`}</style>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg"
+            src="/honey-bg.png"
             alt="Hero Background"
             fill
             className="object-cover opacity-30 dark:opacity-20 scale-105 animate-float"
@@ -45,13 +59,31 @@ export default async function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-up stagger-3">
-            <Button asChild size="lg" className="rounded-full px-10 h-14 text-lg shadow-[0_0_30px_rgba(201,156,51,0.2)] hover:shadow-[0_0_40px_rgba(201,156,51,0.4)]">
-              <Link href="/products">Shop Collection</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="rounded-full px-10 h-14 text-lg glass-panel hover:bg-primary/10">
-              <Link href="#about">Our Story</Link>
-            </Button>
-          </div>
+
+  {/* 🔥 Animated Gradient Button */}
+  <div className="button-wrapper relative inline-block p-[2px] rounded-full overflow-hidden hover:scale-105 transition duration-300 active:scale-100 before:content-[''] before:absolute before:inset-0 before:bg-[conic-gradient(from_0deg,_#C99C33,_#C99C3330,_#C99C33)]">
+    
+    <Button
+      asChild
+      size="lg"
+      className="relative z-10 rounded-full px-10 h-14 text-lg bg-black text-white shadow-[0_0_30px_rgba(201,156,51,0.2)] hover:shadow-[0_0_40px_rgba(201,156,51,0.4)]"
+    >
+      <Link href="/products">Shop Collection</Link>
+    </Button>
+
+  </div>
+
+  {/* Secondary Button (same as before) */}
+  <Button
+    asChild
+    variant="outline"
+    size="lg"
+    className="rounded-full px-10 h-14 text-lg glass-panel hover:bg-primary/10"
+  >
+    <Link href="#about">Our Story</Link>
+  </Button>
+
+</div>
         </div>
       </section>
 

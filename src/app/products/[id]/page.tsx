@@ -20,7 +20,7 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "1234567890";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "7017379969";
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@auranaturals.com";
 
   // Dynamic WhatsApp Link Generation

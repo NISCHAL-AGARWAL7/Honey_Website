@@ -12,7 +12,7 @@ const MOCK_PRODUCTS: Product[] = [
     name: "Pure Wild Forest Honey",
     price: 499,
     category: "Honey",
-    image: "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    image: "/honey-card.png",
     description: "Sourced from the deep forests, our raw honey is 100% pure and unprocessed. Rich in antioxidants and natural enzymes.",
   },
   {
@@ -20,7 +20,7 @@ const MOCK_PRODUCTS: Product[] = [
     name: "Himalayan Shilajit Resin",
     price: 1299,
     category: "Shilajit",
-    image: "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    image: "/shilajit-card.png",
     description: "Premium grade pure Shilajit sourced from high altitudes of the Himalayas. Boosts energy, stamina, and overall vitality.",
   },
   {
@@ -28,7 +28,7 @@ const MOCK_PRODUCTS: Product[] = [
     name: "Organic Acacia Honey",
     price: 599,
     category: "Honey",
-    image: "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    image: "/honey-card.png",
     description: "Light in color and mild in flavor, perfect for sweetening teas and desserts without altering their taste.",
   },
   {
@@ -36,7 +36,7 @@ const MOCK_PRODUCTS: Product[] = [
     name: "Ashwagandha Root Powder",
     price: 349,
     category: "Herbs",
-    image: "https://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg",
+    image: "/herbs-card.png",
     description: "An ancient medicinal herb that helps manage stress and anxiety while boosting brain function.",
   }
 ];

@@ -1,44 +1,138 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/products" },
+    { name: "Story", href: "/#about" },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-background/40 backdrop-blur-2xl backdrop-saturate-150 shadow-[0_8px_32px_rgba(0,0,0,0.04)] transition-all duration-500">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          <Link href="/" className="group flex items-center gap-4 transition-all duration-300">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full border-[1.5px] border-primary/30 shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all duration-500 group-hover:border-primary/60 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(212,175,55,0.3)]">
-              <Image 
-                src="/logo.png" 
-                alt="Aura Naturals Logo" 
-                fill 
-                className="object-cover"
-                sizes="48px"
-              />
+    <header className="sticky top-4 z-50 w-full px-4">
+      <div className="max-w-7xl mx-auto">
+        <div
+          className={`flex items-center justify-between rounded-full px-6 transition-all duration-500
+      ${
+        scrolled
+          ? "py-2 bg-background/80 backdrop-blur-2xl border border-border shadow-xl"
+          : "py-3 bg-background/40 backdrop-blur-xl border border-border/40"
+      }`}
+        >
+          {/* LOGO */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative h-9 w-9 rounded-full overflow-hidden border border-border">
+              <Image src="/logo.png" alt="logo" fill className="object-cover" />
             </div>
-            <span className="text-2xl font-medium tracking-tight text-foreground hidden sm:inline-block transition-colors group-hover:text-primary">
-              Aura <span className="font-light text-primary group-hover:text-foreground transition-colors">Naturals</span>
+
+            <span className="text-lg font-semibold text-foreground group-hover:text-primary transition">
+              Organic Herbs <span className="text-primary font-light"> & Honey </span>
             </span>
           </Link>
-          
-          <nav className="hidden md:flex items-center gap-10 text-sm tracking-wide font-medium">
-            <Link href="/" className="relative text-muted-foreground hover:text-foreground transition-colors py-2 group">
-              Home
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full rounded-full"></span>
-            </Link>
-            <Link href="/products" className="relative text-muted-foreground hover:text-foreground transition-colors py-2 group">
-              Shop All
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full rounded-full"></span>
-            </Link>
-            <Link href="/#about" className="relative text-muted-foreground hover:text-foreground transition-colors py-2 group">
-              Our Story
-              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full rounded-full"></span>
-            </Link>
+
+          {/* NAV */}
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+            {links.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative overflow-hidden h-6 group px-1"
+                >
+                  {/* TOP TEXT */}
+                  <span
+                    className={`block transition-transform duration-500 ease-in-out
+          ${isActive ? "-translate-y-full text-foreground" : "text-muted-foreground group-hover:-translate-y-full group-hover:text-foreground"}`}
+                  >
+                    {item.name}
+                  </span>
+
+                  {/* BOTTOM TEXT */}
+                  <span
+                    className={`block absolute top-full left-0 transition-transform duration-500 ease-in-out
+          ${isActive ? "-translate-y-full text-primary" : "text-muted-foreground group-hover:-translate-y-full group-hover:text-primary"}`}
+                  >
+                    {item.name}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* RIGHT */}
+          <div className="flex items-center gap-3">
             <ThemeToggle />
+
+            {/* <button
+              className="hidden md:block px-4 py-2 rounded-full text-sm font-medium 
+        bg-primary text-primary-foreground 
+        hover:opacity-90 transition-all duration-300 shadow-sm"
+            >
+              Get Started
+            </button> */}
+
+            <button
+              onClick={() => setOpen(!open)}
+              className="md:hidden text-muted-foreground"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* MOBILE */}
+        <div
+          className={`md:hidden mt-4 transition-all duration-300 ${
+            open
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
+        >
+          <div
+            className="flex flex-col items-center gap-5 py-6 rounded-2xl 
+      bg-background/80 backdrop-blur-2xl border border-border shadow-xl"
+          >
+            {links.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-foreground"
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            <button className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm">
+              Get Started
+            </button>
           </div>
         </div>
       </div>
