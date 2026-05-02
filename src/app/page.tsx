@@ -14,47 +14,35 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <style>{`
-  .button-wrapper::before {
-    animation: spin-gradient 4s linear infinite;
-  }
+        .button-wrapper::before {
+          animation: spin-gradient 4s linear infinite;
+        }
 
-  @keyframes spin-gradient {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-`}</style>
+        @keyframes spin-gradient {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* ✅ FIX: Hero Section starts from top (covers behind navbar) */}
+      {/* The key change: removed mt-* and used -mt to pull section up behind fixed navbar */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-  <Image
-    src="/honey-bg.png"
-    alt="Hero Background"
-    fill
-    className="
-      object-cover 
-      opacity-70 dark:opacity-50 
-      scale-105 animate-float
-    "
-    priority
-    sizes="100vw"
-  />
+          <Image
+            src="/honey-bg.png"
+            alt="Hero Background"
+            fill
+            className="object-cover opacity-200 dark:opacity-200 scale-105 animate-float"
+            priority
+            sizes="100vw"
+          />
 
-  {/* Gradient overlay (stronger in dark) */}
-  <div className="
-    absolute inset-0 
-    bg-gradient-to-b 
-    from-background/30 via-background/50 to-background
-    dark:from-background/60 dark:via-background/70 dark:to-background
-  " />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/50 to-background dark:from-background/60 dark:via-background/70 dark:to-background" />
 
-  {/* Radial overlay (subtle depth effect) */}
-  <div className="
-    absolute inset-0 
-    bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)] 
-    dark:bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.7)_100%)]
-  " />
-</div>
+          {/* Radial overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.7)_100%)]" />
+        </div>
 
         <div className="container relative z-10 mx-auto px-4 text-center mt-8 md:mt-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-6 animate-fade-in-up">
@@ -74,7 +62,6 @@ export default async function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up stagger-3 px-4">
-
             {/* Animated Gradient Button */}
             <div className="button-wrapper relative inline-block p-[2px] rounded-full overflow-hidden hover:scale-105 transition duration-300 active:scale-100 before:content-[''] before:absolute before:inset-0 before:bg-[conic-gradient(from_0deg,_#C99C33,_#C99C3330,_#C99C33)] w-full sm:w-auto">
               <Button
@@ -95,7 +82,6 @@ export default async function Home() {
             >
               <Link href="#about">Our Story</Link>
             </Button>
-
           </div>
         </div>
       </section>

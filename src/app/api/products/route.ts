@@ -34,17 +34,17 @@ export async function GET() {
     const data = await response.json();
 
     const products = data.results.map((item: any) => ({
-      id: item.id,
-      name: item.properties.Name?.title?.[0]?.plain_text || "",
-      price: item.properties.Price?.number || 0,
-      category: item.properties.Category?.select?.name || "",
-      image:
-  item.properties.Image?.files?.[0]?.file?.url ||
-  item.properties.Image?.files?.[0]?.external?.url ||
-  "/placeholder.png",
-      description:
-        item.properties.Description?.rich_text?.[0]?.plain_text || "",
-    }));
+  id: item.id,
+  name: item.properties.Name?.title?.[0]?.plain_text || "",
+  price: item.properties.Price?.number || 0,
+  category: item.properties.Category?.select?.name || "",
+
+  // ✅ FIXED (URL type)
+  image: item.properties.Image?.url || "/placeholder.png",
+
+  description:
+    item.properties.Description?.rich_text?.[0]?.plain_text || "",
+}));
 
     return NextResponse.json(products);
   } catch (error: any) {

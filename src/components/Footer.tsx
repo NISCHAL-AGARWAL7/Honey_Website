@@ -22,7 +22,7 @@ export function Footer() {
               </div>
 
               <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                Aura <span className="text-primary font-light">Naturals</span>
+                Organic Herbs & <span className="text-primary font-light">Honey</span>
               </h3>
             </div>
 
@@ -123,7 +123,7 @@ export function Footer() {
         {/* BOTTOM */}
         <div className="mt-12 pt-6 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
 
-          <p>© {new Date().getFullYear()} Aura Naturals</p>
+          <p>© {new Date().getFullYear()} Organic Herbs & Honey</p>
 
           <div className="flex items-center gap-4">
             <Link href="#" className="hover:text-primary transition">Privacy</Link>

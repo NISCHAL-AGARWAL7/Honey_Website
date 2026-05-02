@@ -38,7 +38,7 @@ export default async function ProductDetailPage({
   const emailUrl = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 pt-24 pb-12">
       <Link href="/products" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Products
       </Link>
