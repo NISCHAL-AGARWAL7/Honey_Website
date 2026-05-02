@@ -31,7 +31,7 @@ export default function CartPage() {
 
   if (!mounted) {
     return (
-      <div className="container mx-auto px-4 py-24 flex justify-center">
+      <div className="container mx-auto px-4 pt-6 pb-24 flex justify-center">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -39,7 +39,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-24 text-center max-w-md">
+      <div className="container mx-auto px-4 pt-6 pb-24 text-center max-w-md">
         <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
         <p className="text-muted-foreground mb-8">Looks like you haven't added anything to your cart yet.</p>
         <Button asChild size="lg" className="w-full">
@@ -50,7 +50,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
+    <div className="container mx-auto px-4 pt-6 pb-12 max-w-4xl">
       <Link href="/products" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" /> Continue Shopping
       </Link>
@@ -61,8 +61,7 @@ export default function CartPage() {
         <div className="lg:col-span-2 space-y-6">
           {items.map((item) => (
             <div key={item.id} className="flex gap-4 p-4 border border-border rounded-2xl bg-card">
-              
-              {/* IMAGE FIX */}
+
               <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-muted flex-shrink-0">
                 {item.image ? (
                   <Image src={item.image} alt={item.name} fill className="object-cover" />
