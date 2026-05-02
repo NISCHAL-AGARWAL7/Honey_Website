@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProducts } from "@/services/getProducts";
 import { Button } from "@/components/ui/Button";
-import { MessageCircle, Mail, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { AddToCartButton } from "@/components/AddToCartButton";
 
 export const dynamic = 'force-dynamic';
 
@@ -94,24 +95,9 @@ export default async function ProductDetailPage({
           </div>
 
           <div className="border-t border-border pt-8 space-y-4">
-            <h3 className="font-semibold text-lg mb-4">Order Now</h3>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="flex-1 gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white">
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="h-5 w-5" />
-                  Order via WhatsApp
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="flex-1 gap-2">
-                <a href={emailUrl}>
-                  <Mail className="h-5 w-5" />
-                  Order via Email
-                </a>
-              </Button>
+              <AddToCartButton product={product} />
             </div>
-            <p className="text-sm text-center text-muted-foreground mt-4">
-              Clicking these buttons will open your preferred messaging app with a pre-filled order request.
-            </p>
           </div>
         </div>
       </div>

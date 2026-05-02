@@ -5,13 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
+import { ShoppingCart } from "lucide-react";
+import { useCartStore } from "@/store/cartStore";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  
+  const items = useCartStore((state) => state.items);
+  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -84,17 +91,19 @@ export function Navbar() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
 
-            {/* <button
-              className="hidden md:block px-4 py-2 rounded-full text-sm font-medium 
-        bg-primary text-primary-foreground 
-        hover:opacity-90 transition-all duration-300 shadow-sm"
-            >
-              Get Started
-            </button> */}
+            {/* Cart Icon */}
+            <Link href="/cart" className="relative p-2 text-muted-foreground hover:text-primary transition-colors">
+              <ShoppingCart className="h-5 w-5" />
+              {mounted && cartItemCount > 0 && (
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-1.5 py-0.5 text-[10px] font-bold leading-none text-primary-foreground bg-primary rounded-full -translate-y-1/4 translate-x-1/4">
+                  {cartItemCount}
+                </span>
+              )}
+            </Link>
 
             <button
               onClick={() => setOpen(!open)}
-              className="md:hidden text-muted-foreground"
+              className="md:hidden text-muted-foreground cursor-pointer"
             >
               <svg
                 className="w-6 h-6"
