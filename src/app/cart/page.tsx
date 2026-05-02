@@ -64,12 +64,18 @@ export default function CartPage() {
 
               <div className="relative w-24 h-24 rounded-xl overflow-hidden bg-muted flex-shrink-0">
                 {item.image ? (
-                  <Image src={item.image} alt={item.name} fill className="object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-3xl">
-                    🍯
-                  </div>
-                )}
+  <Image
+    src={item.image}
+    alt={item.name}
+    fill
+    className="object-cover"
+    unoptimized   // ✅ important (external images ke liye)
+  />
+) : (
+  <div className="w-full h-full flex items-center justify-center text-3xl">
+    🍯
+  </div>
+)}
               </div>
 
               <div className="flex-1 flex flex-col justify-between">

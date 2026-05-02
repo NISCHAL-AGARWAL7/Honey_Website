@@ -33,7 +33,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-4 z-50 w-full px-4">
+    <header className="fixed top-4 z-50 w-full px-4">
       <div className="max-w-7xl mx-auto">
         <div
           className={`flex items-center justify-between rounded-full px-6 transition-all duration-500

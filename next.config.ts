@@ -20,6 +20,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "*.notion.so",
       },
+      {
+        protocol: "https",
+        hostname: "tiimg.tistatic.com", // ✅ ADD THIS
+      },
     ],
   },
 };
