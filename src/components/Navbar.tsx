@@ -44,15 +44,24 @@ export function Navbar() {
       }`}
         >
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-9 w-9 rounded-full overflow-hidden border border-border">
-              <Image src="/logo.png" alt="logo" fill className="object-cover" />
-            </div>
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+  {/* Logo Image */}
+  <div className="relative h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 rounded-full overflow-hidden border border-border">
+    <Image
+  src="/logo.png"
+  alt="logo"
+  fill
+  sizes="(max-width: 768px) 32px, 40px"
+  className="object-cover"
+/>
+  </div>
 
-            <span className="text-lg font-semibold text-foreground group-hover:text-primary transition">
-              Organic Herbs <span className="text-primary font-light"> & Honey </span>
-            </span>
-          </Link>
+  {/* Logo Text */}
+  <span className="text-sm sm:text-base md:text-lg font-semibold text-foreground group-hover:text-primary transition leading-tight">
+    Organic Herbs{" "}
+    <span className="text-primary font-light">& Honey</span>
+  </span>
+</Link>
 
           {/* NAV */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">

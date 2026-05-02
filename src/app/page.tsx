@@ -27,17 +27,34 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/honey-bg.png"
-            alt="Hero Background"
-            fill
-            className="object-cover opacity-60 dark:opacity-40 scale-105 animate-float"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.2)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)]" />
-        </div>
+  <Image
+    src="/honey-bg.png"
+    alt="Hero Background"
+    fill
+    className="
+      object-cover 
+      opacity-70 dark:opacity-50 
+      scale-105 animate-float
+    "
+    priority
+    sizes="100vw"
+  />
+
+  {/* Gradient overlay (stronger in dark) */}
+  <div className="
+    absolute inset-0 
+    bg-gradient-to-b 
+    from-background/30 via-background/50 to-background
+    dark:from-background/60 dark:via-background/70 dark:to-background
+  " />
+
+  {/* Radial overlay (subtle depth effect) */}
+  <div className="
+    absolute inset-0 
+    bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)] 
+    dark:bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.7)_100%)]
+  " />
+</div>
 
         <div className="container relative z-10 mx-auto px-4 text-center mt-8 md:mt-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-6 animate-fade-in-up">

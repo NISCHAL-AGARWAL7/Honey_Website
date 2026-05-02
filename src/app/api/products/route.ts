@@ -19,37 +19,39 @@ export async function GET() {
           "Notion-Version": "2022-06-28",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+          page_size: 100,
+        }),
       }
     );
 
     if (!response.ok) {
-      const err = await response.json();
-      console.error("❌ Notion API Error:", err);
-      return NextResponse.json({ error: err.message }, { status: 500 });
+      const text = await response.text(); // safer than .json()
+      console.error("❌ Notion API Error:", text);
+      return NextResponse.json({ error: text }, { status: 500 });
     }
 
     const data = await response.json();
 
-    const products = data.results.map((item: any) => {
-  // Image structure dekho
-  console.log("🖼️ Image field:", JSON.stringify(item.properties.Image, null, 2));
-  
-  return {
-    id: item.id,
-    name: item.properties.Name?.title?.[0]?.plain_text || "",
-    price: item.properties.Price?.number || 0,
-    category: item.properties.Category?.select?.name || "",
-    image: item.properties.Image?.url || 
-       item.properties.Image?.files?.[0]?.file?.url || 
-       item.properties.Image?.files?.[0]?.external?.url || "",
-    description: item.properties.Description?.rich_text?.[0]?.plain_text || "",
-  };
-});
+    const products = data.results.map((item: any) => ({
+      id: item.id,
+      name: item.properties.Name?.title?.[0]?.plain_text || "",
+      price: item.properties.Price?.number || 0,
+      category: item.properties.Category?.select?.name || "",
+      image:
+  item.properties.Image?.files?.[0]?.file?.url ||
+  item.properties.Image?.files?.[0]?.external?.url ||
+  "/placeholder.png",
+      description:
+        item.properties.Description?.rich_text?.[0]?.plain_text || "",
+    }));
 
     return NextResponse.json(products);
   } catch (error: any) {
     console.error("❌ Error:", error?.message || error);
-    return NextResponse.json({ error: error?.message || "Failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: error?.message || "Failed" },
+      { status: 500 }
+    );
   }
 }
