@@ -45,12 +45,36 @@ export default async function Home() {
         </div>
 
         <div className="container relative z-10 mx-auto px-4 text-center mt-8 md:mt-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel mb-6 animate-fade-in-up">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-foreground">
-              100% Pure & Organic
-            </span>
-          </div>
+          <div className="relative inline-flex p-[1px] rounded-full mb-6 animate-fade-in-up overflow-hidden
+bg-gradient-to-r from-[#3a2a05] via-[#5a3e0a] to-[#3a2a05]">
+
+  {/* Moving white shine */}
+  <span className="absolute inset-0 rounded-full overflow-hidden">
+    <span className="absolute top-0 left-[-60%] h-full w-1/2 
+    bg-gradient-to-r from-transparent via-white/30 to-transparent 
+    blur-sm animate-[shine_4s_linear_infinite]" />
+  </span>
+
+  <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
+  bg-black/60 backdrop-blur-md border border-white/10">
+    
+    {/* Dot */}
+    <div className="relative flex size-3.5 items-center justify-center">
+      <span className="absolute inline-flex h-full w-full rounded-full 
+      bg-[#D4AF37] opacity-50 animate-ping"></span>
+      <span className="relative inline-flex size-2 rounded-full bg-[#F5C542]"></span>
+    </div>
+
+    {/* Icon */}
+    <Sparkles className="w-4 h-4 text-[#F5C542]" />
+
+    {/* Text */}
+    <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-white/90">
+      100% Pure & Organic
+    </span>
+
+  </div>
+</div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground mb-6 animate-fade-in-up stagger-1 drop-shadow-sm">
             Nature's Purest <br />
