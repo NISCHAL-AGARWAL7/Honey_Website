@@ -49,7 +49,7 @@ export default function CartPage() {
 
   if (!mounted) {
     return (
-      <div className="container mx-auto px-4 pt-6 pb-24 flex justify-center">
+      <div className="container mx-auto px-4 pt-24 md:pt-28 pb-24 flex justify-center">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -57,7 +57,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 pt-6 pb-24 text-center max-w-md">
+      <div className="container mx-auto px-4 pt-24 md:pt-28 pb-24 text-center max-w-md">
         <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
         <p className="text-muted-foreground mb-8">
           Looks like you haven't added anything to your cart yet.
@@ -120,7 +120,7 @@ export default function CartPage() {
                   <div className="flex items-center gap-3 bg-muted/50 rounded-full px-2 py-1 border border-border">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="p-1 hover:text-primary transition-colors disabled:opacity-50 cursor-pointer"
+                      className="p-1 hover:text-primary transition-all disabled:opacity-50 cursor-pointer active:scale-90"
                       disabled={item.quantity <= 1}
                     >
                       <Minus className="h-4 w-4" />
@@ -130,7 +130,7 @@ export default function CartPage() {
                     </span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="p-1 hover:text-primary transition-colors cursor-pointer"
+                      className="p-1 hover:text-primary transition-all cursor-pointer active:scale-90"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -138,7 +138,7 @@ export default function CartPage() {
 
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-red-500 hover:text-red-600 transition-colors p-2 cursor-pointer"
+                    className="text-red-500 hover:text-red-600 transition-all p-2 cursor-pointer active:scale-90"
                   >
                     <Trash2 className="h-5 w-5" />
                   </button>
