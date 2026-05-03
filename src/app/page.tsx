@@ -26,7 +26,10 @@ export default async function Home() {
 
       {/* ✅ FIX: Hero Section starts from top (covers behind navbar) */}
       {/* The key change: removed mt-* and used -mt to pull section up behind fixed navbar */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section
+        className="relative flex items-center justify-center overflow-hidden -mt-[120px] pt-[120px]"
+        style={{ minHeight: "calc(100vh + 120px)" }}
+      >
         <div className="absolute inset-0 z-0">
           <Image
             src="/honey-bg.png"
@@ -44,37 +47,37 @@ export default async function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.7)_100%)]" />
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 text-center mt-8 md:mt-20">
+        <div className="container relative z-10 mx-auto px-4 text-center -translate-y-[60px] md:-translate-y-[80px]">
           <div className="relative inline-flex p-[1px] rounded-full mb-6 animate-fade-in-up overflow-hidden
 bg-gradient-to-r from-[#3a2a05] via-[#5a3e0a] to-[#3a2a05]">
 
-  {/* Moving white shine */}
-  <span className="absolute inset-0 rounded-full overflow-hidden">
-    <span className="absolute top-0 left-[-60%] h-full w-1/2 
+            {/* Moving white shine */}
+            <span className="absolute inset-0 rounded-full overflow-hidden">
+              <span className="absolute top-0 left-[-60%] h-full w-1/2 
     bg-gradient-to-r from-transparent via-white/30 to-transparent 
     blur-sm animate-[shine_4s_linear_infinite]" />
-  </span>
+            </span>
 
-  <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
+            <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
   bg-black/60 backdrop-blur-md border border-white/10">
-    
-    {/* Dot */}
-    <div className="relative flex size-3.5 items-center justify-center">
-      <span className="absolute inline-flex h-full w-full rounded-full 
+
+              {/* Dot */}
+              <div className="relative flex size-3.5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full rounded-full 
       bg-[#D4AF37] opacity-50 animate-ping"></span>
-      <span className="relative inline-flex size-2 rounded-full bg-[#F5C542]"></span>
-    </div>
+                <span className="relative inline-flex size-2 rounded-full bg-[#F5C542]"></span>
+              </div>
 
-    {/* Icon */}
-    <Sparkles className="w-4 h-4 text-[#F5C542]" />
+              {/* Icon */}
+              <Sparkles className="w-4 h-4 text-[#F5C542]" />
 
-    {/* Text */}
-    <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-white/90">
-      100% Pure & Organic
-    </span>
+              {/* Text */}
+              <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-white/90">
+                100% Pure & Organic
+              </span>
 
-  </div>
-</div>
+            </div>
+          </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground mb-6 animate-fade-in-up stagger-1 drop-shadow-sm">
             Nature's Purest <br />

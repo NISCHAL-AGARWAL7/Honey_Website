@@ -26,7 +26,7 @@ export function AddToCartButton({ product }: { product: Product }) {
   return (
     <Button 
       size="lg" 
-      className="w-full sm:w-auto flex-1 gap-2" 
+      className="w-full sm:w-auto gap-2 py-3 sm:py-0" 
       onClick={handleAddToCart}
       isLoading={isLoading || isPending}
     >

@@ -28,8 +28,8 @@ export default async function ProductsPage({
 
   return (
     <div 
-      className="min-h-screen relative bg-cover bg-center bg-no-repeat bg-fixed"
-      style={{ backgroundImage: 'url("/honey-bg.png")' }}
+      className="relative bg-cover bg-center bg-no-repeat bg-fixed -mt-[120px] pt-[120px]"
+      style={{ backgroundImage: 'url("/honey-bg.png")', minHeight: "calc(100vh + 120px)" }}
     >
       <div className="absolute inset-0 bg-background/80 dark:bg-background/90 backdrop-blur-[2px]"></div>
       

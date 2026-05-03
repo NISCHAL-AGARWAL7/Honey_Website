@@ -48,8 +48,12 @@ export function ProductCard({ product }: { product: Product }) {
         />
 
         {/* ADD TO CART */}
-        <div className="absolute bottom-4 w-full flex justify-center opacity-0 group-hover:opacity-100 transition">
-          <Button onClick={handleAddToCart} isLoading={isLoading}>
+        <div className="absolute bottom-3 sm:bottom-4 left-0 right-0 px-3 sm:px-0 flex justify-center opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 z-10">
+          <Button 
+            onClick={handleAddToCart} 
+            isLoading={isLoading}
+            className="w-full sm:w-auto shadow-lg"
+          >
             Add to Cart
           </Button>
         </div>
