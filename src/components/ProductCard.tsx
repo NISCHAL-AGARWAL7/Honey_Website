@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types";
@@ -9,9 +11,13 @@ import { Button } from "@/components/ui/Button";
 export function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCartStore();
 
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const handleAddToCart = (e: any) => {
     e.preventDefault(); // ❗ link navigation rokega
     e.stopPropagation();
+
+    setIsLoading(true);
 
     addItem({
       id: product.id,
@@ -20,8 +26,12 @@ export function ProductCard({ product }: { product: Product }) {
       category: product.category,
       image: product.image,
       description: product.description, // 🔥 ADD THIS
-      quantity: 1,
     });
+
+    // Fake loading delay to give a professional click feedback
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 400);
   };
 
   return (
@@ -39,7 +49,7 @@ export function ProductCard({ product }: { product: Product }) {
 
         {/* ADD TO CART */}
         <div className="absolute bottom-4 w-full flex justify-center opacity-0 group-hover:opacity-100 transition">
-          <Button onClick={handleAddToCart}>
+          <Button onClick={handleAddToCart} isLoading={isLoading}>
             Add to Cart
           </Button>
         </div>
