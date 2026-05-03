@@ -26,7 +26,6 @@ export function ProductCard({ product }: { product: Product }) {
       category: product.category,
       image: product.image,
       description: product.description, // 🔥 ADD THIS
-      quantity: 1,
     });
 
     // Fake loading delay to give a professional click feedback
