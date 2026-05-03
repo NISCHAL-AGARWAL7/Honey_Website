@@ -28,7 +28,7 @@ export const playfair = Playfair_Display({
 // });
 
 export const metadata: Metadata = {
-  title: "Aura Naturals | Premium Honey & Shilajit",
+  title: "Organic Herbs & Honey | Premium Honey & Shilajit",
   description: "Experience the healing power of nature with our premium, pure, and natural products including Honey and Shilajit.",
 };
 
@@ -52,7 +52,9 @@ export default function RootLayout({
 
             {/* UI */}
             <Navbar />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow pt-[120px]">
+              {children}
+            </main>
             <Footer />
           </SmoothScroll>
         </ThemeProvider>

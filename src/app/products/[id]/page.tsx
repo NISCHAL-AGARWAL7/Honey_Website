@@ -33,7 +33,7 @@ export default async function ProductDetailPage({
   // Dynamic Email Link Generation
   const emailSubject = encodeURIComponent(`Order Request: ${product.name}`);
   const emailBody = encodeURIComponent(
-    `Hello Aura Naturals team,\n\nI would like to place an order for the following product:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`
+    `Hello Organic Herbs & Honey team,\n\nI would like to place an order for the following product:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`
   );
   const emailUrl = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
 
