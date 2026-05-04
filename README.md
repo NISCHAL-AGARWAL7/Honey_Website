@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Honey Frontend
 
-## Getting Started
+A premium, luxury-focused e-commerce website for a honey brand. It is designed to deliver a sophisticated browsing experience featuring glassmorphism, earthy/golden aesthetics, dark/light mode, and smooth micro-animations.
 
-First, run the development server:
+## 📖 About the Project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This application serves as a modern storefront for premium honey products. Instead of a traditional automated payment gateway, the platform facilitates a personalized ordering experience. Users can browse products, manage their cart, and checkout seamlessly by sending their order details directly to the brand via **WhatsApp** or **Email**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏗 Architecture & Flow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend:** Built with [Next.js](https://nextjs.org/) (React 19) for performance, SEO, and seamless server-side rendering.
+- **Headless CMS:** Uses **Notion** as the database. Product details, images, and content are fetched dynamically using the Notion API (`@notionhq/client`).
+- **State Management:** [Zustand](https://zustand-demo.pmnd.rs/) is used to manage the shopping cart state with persistent local storage, ensuring users don't lose their cart items upon refreshing.
+- **Checkout Flow:** The cart directly integrates with WhatsApp and Email. When a user checks out, the application generates a pre-filled message with their order details and redirects them to the respective messaging platform.
+- **Styling & UI:** [Tailwind CSS v4](https://tailwindcss.com/) handles responsive, utility-first styling.
+- **Animations:** [Framer Motion](https://www.framer.com/motion/) provides premium tactile feedback and micro-animations, while [Lenis](https://lenis.darkroom.engineering/) handles smooth page scrolling.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 💻 Tech Stack
 
-## Learn More
+- **Framework:** Next.js
+- **Styling:** Tailwind CSS
+- **State Management:** Zustand
+- **Animations:** Framer Motion, Lenis
+- **CMS Integration:** Notion API
+- **Icons:** Lucide React, React Icons
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
