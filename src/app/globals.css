@@ -86,6 +86,8 @@ body {
 
 .text-gradient-gold {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-[#dfb95c] via-[#c99c33] to-[#a88d6c];
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Animations */
