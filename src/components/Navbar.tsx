@@ -128,10 +128,10 @@ export function Navbar() {
 
         {/* MOBILE */}
         <div
-          className={`md:hidden mt-4 transition-all duration-300 ${
+          className={`md:hidden mt-4 transition-all duration-300 overflow-hidden ${
             open
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 -translate-y-4 pointer-events-none"
+              ? "opacity-100 translate-y-0 h-auto"
+              : "opacity-0 -translate-y-4 pointer-events-none h-0"
           }`}
         >
           <div
@@ -143,12 +143,13 @@ export function Navbar() {
                 key={item.name}
                 href={item.href}
                 className="text-foreground"
+                onClick={() => setOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
 
-            <button className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm">
+            <button onClick={() => setOpen(false)} className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm">
               Get Started
             </button>
           </div>

@@ -4,6 +4,7 @@ import { useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   MessageCircle,
   Mail,
@@ -16,6 +17,7 @@ import { useEffect, useState } from "react";
 
 export default function CartPage() {
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
   const { items, updateQuantity, removeItem } = useCartStore();
   const totalPrice = items.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -71,12 +73,13 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 pt-24 md:pt-28 pb-12 max-w-4xl">
-      <Link
+      <a
         href="/products"
-        className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8"
+        className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8 py-3 pr-4 relative z-10 cursor-pointer"
+        style={{ touchAction: "manipulation", WebkitTapHighlightColor: "transparent" }}
       >
         <ArrowLeft className="mr-2 h-4 w-4" /> Continue Shopping
-      </Link>
+      </a>
 
       <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
 
