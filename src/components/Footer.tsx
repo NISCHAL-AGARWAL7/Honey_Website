@@ -5,10 +5,10 @@ import { FiMail } from "react-icons/fi";
 
 export function Footer() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "7017379969";
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@auranaturals.com";
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "organicherbsandhoney@gmail.com";
 
   return (
-    <footer className="mt-20 border-t border-border/50 bg-background/60 backdrop-blur-xl">
+    <footer className="mt-20 border-t border-border/50 bg-background/60 backdrop-blur-xl pb-14">
       <div className="container mx-auto px-4 py-14 sm:px-6 lg:px-8">
 
         {/* TOP GRID */}
@@ -35,7 +35,7 @@ export function Footer() {
             <div className="flex items-center gap-3 pt-2">
 
   <a
-    href="https://instagram.com"
+    href="https://www.instagram.com/old_n_gold_purehoney?igsh=MXM3eXF3d2MzZTh2OQ%3D%3D&utm_source=qr"
     target="_blank"
     className="p-2 rounded-full border border-border 
     text-muted-foreground hover:text-pink-500 
@@ -46,7 +46,7 @@ export function Footer() {
   </a>
 
   <a
-    href="https://facebook.com"
+    href="https://www.facebook.com/share/1L5vBXGTYw/?mibextid=wwXIfr"
     target="_blank"
     className="p-2 rounded-full border border-border 
     text-muted-foreground hover:text-blue-500 

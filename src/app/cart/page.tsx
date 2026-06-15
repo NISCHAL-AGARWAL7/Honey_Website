@@ -19,10 +19,7 @@ export default function CartPage() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { items, updateQuantity, removeItem } = useCartStore();
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0,
-  );
+
 
   useEffect(() => {
     setMounted(true);
@@ -31,27 +28,27 @@ export default function CartPage() {
   const whatsappNumber =
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "7017379969";
   const contactEmail =
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@auranaturals.com";
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "organicherbsandhoney@gmail.com";
+
 
   const orderDetails = items
-    .map((item) => `${item.quantity}x ${item.name} (₹${item.price})`)
+    .map((item) => `${item.quantity}x ${item.name}`)
     .join("\n");
-  const totalMessage = `Total: ₹${totalPrice.toLocaleString("en-IN")}`;
 
   const whatsappMessage = encodeURIComponent(
-    `Hello, I would like to order:\n\n${orderDetails}\n\n${totalMessage}`,
+    `Hello, I would like to order:\n\n${orderDetails}`,
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   const emailSubject = encodeURIComponent(`Order Request`);
   const emailBody = encodeURIComponent(
-    `Hello Organic Herbs & Honey team,\n\nI would like to place an order for the following items:\n\n${orderDetails}\n\n${totalMessage}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`,
+    `Hello Organic Herbs & Honey team,\n\nI would like to place an order for the following items:\n\n${orderDetails}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`,
   );
   const emailUrl = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
 
   if (!mounted) {
     return (
-      <div className="container mx-auto px-4 pt-24 md:pt-28 pb-24 flex justify-center">
+      <div className="container mx-auto px-4 pb-24 flex justify-center">
         <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
@@ -59,7 +56,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 pt-24 md:pt-28 pb-24 text-center max-w-md">
+      <div className="container mx-auto px-4 pb-24 text-center max-w-md">
         <h1 className="text-3xl font-bold mb-4">Your Cart is Empty</h1>
         <p className="text-muted-foreground mb-8">
           Looks like you haven't added anything to your cart yet.
@@ -72,7 +69,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 pt-24 md:pt-28 pb-12 max-w-4xl">
+    <div className="container mx-auto px-4 pb-12 max-w-4xl">
       <a
         href="/products"
         className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8 py-3 pr-4 relative z-10 cursor-pointer"
@@ -114,9 +111,7 @@ export default function CartPage() {
                       {item.category}
                     </p>
                   </div>
-                  <p className="font-medium">
-                    ₹{(item.price * item.quantity).toLocaleString("en-IN")}
-                  </p>
+
                 </div>
 
                 <div className="flex justify-between items-center mt-4">
@@ -155,23 +150,7 @@ export default function CartPage() {
           <div className="bg-card border border-border rounded-2xl p-6 sticky top-24">
             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
 
-            <div className="space-y-3 mb-6 pb-6 border-b border-border text-sm">
-              <div className="flex justify-between text-muted-foreground">
-                <span>Subtotal</span>
-                <span>₹{totalPrice.toLocaleString("en-IN")}</span>
-              </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>Shipping</span>
-                <span>Calculated on next step</span>
-              </div>
-            </div>
 
-            <div className="flex justify-between items-end mb-8">
-              <span className="text-lg font-semibold">Total</span>
-              <span className="text-2xl font-bold">
-                ₹{totalPrice.toLocaleString("en-IN")}
-              </span>
-            </div>
 
             <div className="space-y-3">
               <Button

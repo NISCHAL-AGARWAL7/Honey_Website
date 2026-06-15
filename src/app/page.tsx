@@ -1,11 +1,24 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { getProducts } from "@/services/getProducts";
 import { ProductCard } from "@/components/ProductCard";
+import { HeroSection } from "@/components/HeroSection";
+import { ImageMarquee } from "@/components/ImageMarquee";
 import { ArrowRight, Leaf, ShieldCheck, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Discover premium organic honey, shilajit, and natural wellness products at Organic Herbs & Honey. 100% pure, lab tested, and sustainably sourced.",
+  openGraph: {
+    title: "Organic Herbs & Honey | Premium Honey & Shilajit",
+    description:
+      "Discover premium organic honey, shilajit, and natural wellness products. 100% pure, lab tested, and sustainably sourced.",
+  },
+};
 
 export default async function Home() {
   const allProducts = await getProducts();
@@ -13,105 +26,8 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <style>{`
-        .button-wrapper::before {
-          animation: spin-gradient 4s linear infinite;
-        }
-
-        @keyframes spin-gradient {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
-
-      {/* ✅ FIX: Hero Section starts from top (covers behind navbar) */}
-      {/* The key change: removed mt-* and used -mt to pull section up behind fixed navbar */}
-      <section
-        className="relative flex items-center justify-center overflow-hidden -mt-[120px] pt-[120px]"
-        style={{ minHeight: "calc(100vh + 120px)" }}
-      >
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/honey-bg.png"
-            alt="Hero Background"
-            fill
-            className="object-cover opacity-200 dark:opacity-200 scale-105 animate-float"
-            priority
-            sizes="100vw"
-          />
-
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/50 to-background dark:from-background/60 dark:via-background/70 dark:to-background" />
-
-          {/* Radial overlay */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.25)_100%)] dark:bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.7)_100%)]" />
-        </div>
-
-        <div className="container relative z-10 mx-auto px-4 text-center -translate-y-[60px] md:-translate-y-[80px]">
-          <div className="relative inline-flex p-[1px] rounded-full mb-6 animate-fade-in-up overflow-hidden
-bg-gradient-to-r from-[#3a2a05] via-[#5a3e0a] to-[#3a2a05]">
-
-            {/* Moving white shine */}
-            <span className="absolute inset-0 rounded-full overflow-hidden">
-              <span className="absolute top-0 left-[-60%] h-full w-1/2 
-    bg-gradient-to-r from-transparent via-white/30 to-transparent 
-    blur-sm animate-[shine_4s_linear_infinite]" />
-            </span>
-
-            <div className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full 
-  bg-black/60 backdrop-blur-md border border-white/10">
-
-              {/* Dot */}
-              <div className="relative flex size-3.5 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full rounded-full 
-      bg-[#D4AF37] opacity-50 animate-ping"></span>
-                <span className="relative inline-flex size-2 rounded-full bg-[#F5C542]"></span>
-              </div>
-
-              {/* Icon */}
-              <Sparkles className="w-4 h-4 text-[#F5C542]" />
-
-              {/* Text */}
-              <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-white/90">
-                100% Pure & Organic
-              </span>
-
-            </div>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground mb-6 animate-fade-in-up stagger-1 drop-shadow-sm">
-            Nature's Purest <br />
-            <span className="text-gradient-gold italic pr-2">Essence</span>
-          </h1>
-
-          <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto animate-fade-in-up stagger-2 font-light leading-relaxed px-2">
-            Discover our premium collection of raw honey, pure shilajit, and natural wellness products sourced directly from the earth.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up stagger-3 px-4">
-            {/* Animated Gradient Button */}
-            <div className="button-wrapper relative inline-block p-[2px] rounded-full overflow-hidden hover:scale-105 transition duration-300 active:scale-100 before:content-[''] before:absolute before:inset-0 before:bg-[conic-gradient(from_0deg,_#C99C33,_#C99C3330,_#C99C33)] w-full sm:w-auto">
-              <Button
-                asChild
-                size="lg"
-                className="relative z-10 rounded-full px-10 h-14 text-lg bg-black text-white shadow-[0_0_30px_rgba(201,156,51,0.2)] hover:shadow-[0_0_40px_rgba(201,156,51,0.4)] w-full sm:w-auto"
-              >
-                <Link href="/products">Shop Collection</Link>
-              </Button>
-            </div>
-
-            {/* Secondary Button */}
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="rounded-full px-10 h-14 text-lg glass-panel hover:bg-primary/10 w-full sm:w-auto"
-            >
-              <Link href="#about">Our Story</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Animated Hero Section - powered by framer-motion */}
+      <HeroSection />
 
       {/* Features Section */}
       <section className="py-16 md:py-24 relative overflow-hidden">
@@ -197,6 +113,9 @@ bg-gradient-to-r from-[#3a2a05] via-[#5a3e0a] to-[#3a2a05]">
           </div>
         </div>
       </section>
+
+      {/* Premium Image Marquee */}
+      <ImageMarquee />
     </div>
   );
 }

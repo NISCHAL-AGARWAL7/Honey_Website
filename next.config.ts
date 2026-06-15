@@ -22,7 +22,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "tiimg.tistatic.com", // ✅ ADD THIS
+        hostname: "tiimg.tistatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
     ],
   },

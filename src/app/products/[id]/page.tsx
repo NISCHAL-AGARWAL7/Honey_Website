@@ -5,8 +5,58 @@ import { getProducts } from "@/services/getProducts";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { AddToCartButton } from "@/components/AddToCartButton";
+import type { Metadata } from "next";
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const products = await getProducts();
+  const product = products.find((p) => p.id === resolvedParams.id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://auranaturals.com";
+
+  // Truncate description to ~150 chars for clean OG/Twitter snippets
+  const truncate = (str: string, max = 150) =>
+    str.length > max ? str.slice(0, max).trimEnd() + "…" : str;
+
+  const seoDescription = `${product.name} - ${truncate(product.description, 150)}`;
+
+  return {
+    title: product.name,
+    description: seoDescription,
+    openGraph: {
+      title: `${product.name} | Organic Herbs & Honey`,
+      description: seoDescription,
+      images: [
+        {
+          url: product.image,
+          width: 800,
+          height: 800,
+          alt: product.name,
+        },
+      ],
+      url: `${baseUrl}/products/${product.id}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Organic Herbs & Honey`,
+      description: seoDescription,
+      images: [product.image],
+    },
+  };
+}
 
 export default async function ProductDetailPage({
   params,
@@ -22,23 +72,23 @@ export default async function ProductDetailPage({
   }
 
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "7017379969";
-  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@auranaturals.com";
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "organicherbsandhoney@gmail.com";
 
   // Dynamic WhatsApp Link Generation
   const whatsappMessage = encodeURIComponent(
-    `Hello, I would like to order:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\nLink: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://auranaturals.com'}/products/${product.id}`
+    `Hello, I would like to order:\n\nProduct: ${product.name}\nLink: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://auranaturals.com'}/products/${product.id}`
   );
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   // Dynamic Email Link Generation
   const emailSubject = encodeURIComponent(`Order Request: ${product.name}`);
   const emailBody = encodeURIComponent(
-    `Hello Organic Herbs & Honey team,\n\nI would like to place an order for the following product:\n\nProduct: ${product.name}\nPrice: ₹${product.price}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`
+    `Hello Organic Herbs & Honey team,\n\nI would like to place an order for the following product:\n\nProduct: ${product.name}\n\nPlease let me know the next steps for payment and delivery.\n\nThank you.`
   );
   const emailUrl = `mailto:${contactEmail}?subject=${emailSubject}&body=${emailBody}`;
 
   return (
-    <div className="container mx-auto px-4 pt-24 pb-12">
+    <div className="container mx-auto px-4 pt-4 pb-12">
       <Link href="/products" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-8">
         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Products
       </Link>
@@ -63,9 +113,7 @@ export default async function ProductDetailPage({
               {product.category}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{product.name}</h1>
-            <p className="text-2xl font-medium text-muted-foreground">
-              ₹{product.price.toLocaleString("en-IN")}
-            </p>
+
           </div>
 
           <div className="prose prose-neutral dark:prose-invert">

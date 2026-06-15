@@ -22,10 +22,9 @@ export function ProductCard({ product }: { product: Product }) {
     addItem({
       id: product.id,
       name: product.name,
-      price: product.price,
       category: product.category,
       image: product.image,
-      description: product.description, // 🔥 ADD THIS
+      description: product.description,
     });
 
     // Fake loading delay to give a professional click feedback
@@ -62,7 +61,6 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="text-center mt-2">
         <h3>{product.name}</h3>
-        <p>₹{product.price}</p>
       </div>
 
     </Link>

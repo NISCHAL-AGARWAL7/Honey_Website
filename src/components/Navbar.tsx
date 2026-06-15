@@ -29,11 +29,11 @@ export function Navbar() {
   const links = [
     { name: "Home", href: "/" },
     { name: "Shop", href: "/products" },
-    { name: "Story", href: "/#about" },
+    { name: "Story", href: "/about" },
   ];
 
   return (
-    <header className="fixed top-4 z-50 w-full px-4">
+    <header data-lenis-prevent className="fixed top-4 z-50 w-full px-4">
       <div className="max-w-7xl mx-auto">
         <div
           className={`flex items-center justify-between rounded-full px-6 transition-all duration-500

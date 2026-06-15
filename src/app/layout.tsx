@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { BottomContactBar } from "@/components/BottomContactBar";
+import { GoDaddyChat } from "@/components/GoDaddyChat";
 import { Inter, Playfair_Display } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import CursorGlow from "@/components/CursorGlow";
@@ -27,9 +29,64 @@ export const playfair = Playfair_Display({
 //   subsets: ["latin"],
 // });
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://auranaturals.com";
+
 export const metadata: Metadata = {
-  title: "Organic Herbs & Honey | Premium Honey & Shilajit",
-  description: "Experience the healing power of nature with our premium, pure, and natural products including Honey and Shilajit.",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Organic Herbs & Honey | Premium Honey & Shilajit",
+    template: "%s | Organic Herbs & Honey",
+  },
+  description:
+    "Experience the healing power of nature with our premium, pure, and natural products including Honey and Shilajit. Lab tested, 100% organic.",
+  keywords: [
+    "organic honey",
+    "raw honey",
+    "shilajit",
+    "natural wellness",
+    "pure honey",
+    "herbal products",
+    "ayurvedic",
+    "auranaturals",
+  ],
+  authors: [{ name: "Organic Herbs & Honey" }],
+  creator: "Organic Herbs & Honey",
+  publisher: "Organic Herbs & Honey",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: baseUrl,
+    siteName: "Organic Herbs & Honey",
+    title: "Organic Herbs & Honey | Premium Honey & Shilajit",
+    description:
+      "Experience the healing power of nature with our premium, pure, and natural products including Honey and Shilajit.",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Organic Herbs & Honey",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Organic Herbs & Honey | Premium Honey & Shilajit",
+    description:
+      "Experience the healing power of nature with our premium, pure, and natural products including Honey and Shilajit.",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -52,10 +109,12 @@ export default function RootLayout({
 
             {/* UI */}
             <Navbar />
-            <main className="flex-grow pt-[120px]">
+            <main className="flex-grow pt-[120px] pb-14">
               {children}
             </main>
             <Footer />
+            <BottomContactBar />
+            <GoDaddyChat />
           </SmoothScroll>
         </ThemeProvider>
       </body>
