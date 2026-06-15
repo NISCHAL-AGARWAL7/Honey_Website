@@ -1,0 +1,9 @@
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.4:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 11.2s
+ ○ Compiling / ...
+[?25h
